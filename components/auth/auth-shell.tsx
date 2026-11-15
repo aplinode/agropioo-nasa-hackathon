@@ -2,8 +2,8 @@ import Image from "next/image";
 import Link from "next/link";
 import type { ReactNode } from "react";
 import { FurrowMotif } from "@/components/FurrowMotif";
-import logoOnDark from "@/references/agropioo-logo-footer.png";
-import logoOnLight from "@/references/agropioo-logo-withoutbg-text.png";
+import logoOnDark from "@/references/Agropioo-logo-footer.png";
+import logoOnLight from "@/references/Agropioo-logo-withoutbg-text.png";
 
 type AuthShellProps = {
   brandHeadline: ReactNode;
@@ -41,7 +41,7 @@ export default function AuthShell({
         </svg>
         <div className="relative">
           <Link href="/" className="inline-flex items-center">
-            <Image src={logoOnDark} alt=Aagropioo" className="h-14 w-auto" />
+            <Image src={logoOnDark} alt="agropioo" className="h-14 w-auto" />
           </Link>
           <p className="mt-2 font-mono text-xs uppercase tracking-[0.22em] text-agro-sprout/80">
             Built for Pakistan
@@ -79,7 +79,7 @@ export default function AuthShell({
       <main className="flex flex-col bg-white px-5 py-8 sm:px-10 lg:px-14 xl:px-20">
         <div className="flex items-center justify-between lg:hidden">
           <Link href="/" className="inline-flex items-center">
-            <Image src={logoOnLight} alt=Aagropioo" className="h-12 w-auto" />
+            <Image src={logoOnLight} alt="agropioo" className="h-12 w-auto" />
           </Link>
         </div>
         <div className="mx-auto flex w-full max-w-md flex-1 flex-col py-10 lg:py-14">{children}</div>

@@ -1,5 +1,5 @@
 import Image from "next/image";
-import logo from "@/references/agropioo-logo-footer.png";
+import logo from "@/references/Agropioo-logo-footer.png";
 import { getDictionary } from "@/lib/i18n/server";
 import type { Locale } from "@/lib/i18n/config";
 
