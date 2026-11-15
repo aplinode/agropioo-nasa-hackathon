@@ -1,5 +1,6 @@
 ﻿"""Application configuration and settings."""
 
+from pydantic import field_validator
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
 
@@ -40,6 +41,14 @@ class Settings(BaseSettings):
 
     # Misc
     next_public_app_url: str = "http://localhost:3000"
+
+    @field_validator("smtp_port", mode="before")
+    @classmethod
+    def parse_optional_smtp_port(cls, value):
+        """Treat empty env values as unset so optional int fields parse cleanly."""
+        if value is None or value == "":
+            return None
+        return value
 
 
 settings = Settings()
