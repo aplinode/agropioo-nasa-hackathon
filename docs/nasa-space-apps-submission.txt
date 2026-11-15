@@ -1,0 +1,113 @@
+NASA SPACE APPS CHALLENGE 2026 — PROJECT SUBMISSION (COPY/PASTE)
+Team: Aplinode | Project: Agropioo | Challenge: Field Shift: Adapting Farms with NASA Data
+
+==================================================
+PROJECT NAME
+==================================================
+Agropioo
+
+==================================================
+SUMMARY (50–200 words)
+==================================================
+Agropioo is an AI-powered, Pakistan-first farm decision-support platform that helps farmers decide what to do, when to do it, and why. We’ve built a working Next.js web/PWA with a multi-agent agriculture advisor (8 specialized agents), digital farm records, weather advisories, mandi price tracking and predictions, crop disease detection, crop recommendations, pest-risk alerts, and profit/loss tracking in 8 local languages.
+
+For the Field Shift challenge, Agropioo includes an API-integrated Rotation Planner that connects to NASA Earth observation services for a farmer’s field (NASA POWER agroclimatology, SMAP soil moisture, GPM IMERG precipitation, and AppEEARS-served MODIS/VIIRS vegetation indices and ECOSTRESS evapotranspiration/heat stress). Combined with farm records, soil/crop constraints, and farmer priorities (water use, resilience, income, soil health), Agropioo compares at least three rotation strategies (including current practice), explains supporting evidence, highlights bare/vulnerable periods, and surfaces risks and data gaps for local expert review. This matters because timely, localized, explainable rotation guidance can reduce losses and strengthen climate resilience for smallholder farmers.
+
+==================================================
+PROJECT DEMONSTRATION (public link, required)
+==================================================
+[ADD PUBLIC LINK HERE — slide deck (max 7 slides incl. title/intro) OR video (max 30 seconds). Must be publicly accessible, no password/permissions.]
+
+Reference demo video (existing; verify length/format meets submission rules before using):
+https://youtu.be/KzR7_XsakdQ?si=o3REP5N6hPw_Ltc1
+
+==================================================
+PROJECT (public link)
+==================================================
+https://github.com/aplinode/agropioo-nasa-hackathon
+
+==================================================
+PROJECT DETAILS
+==================================================
+What it does and how it works (current)
+Agropioo is a full-stack web/PWA platform (Next.js 16, React 19, Neon Postgres) that gives farmers a single place to manage their farm and get personalized guidance:
+- Multi-agent AI advisor: 8 specialized agents (triage, crop, weather, prices, schemes, farm data, crop recommendation, handoff) using OpenAI Agents SDK with streaming responses, conversation memory, and RAG over 21 agricultural knowledge documents (pgvector embeddings).
+- Digital farm records: structured, farm-specific logs (sowing, planting, irrigation, fertilizer, pesticide, disease, harvest, expenses/growth) that provide context to recommendations.
+- Farm & weather intelligence: interactive farm mapping (Leaflet/React-Leaflet, geocoding), farm health/growth tracking, and farm-specific weather advisories/alerts (OpenWeather-based).
+- Market & planning tools: mandi price tracking from 5 Pakistan government sources with history/predictions and SELL/HOLD signals, a crop recommendation engine (40+ crops, 16 district soil profiles, rotation rules), pest-outbreak risk alerts, disease detection (photo upload, TensorFlow.js + HuggingFace, Cloudinary storage), and profit/loss/break-even tracking.
+- Accessibility & resilience: 8 languages (en, ur, pa, ps, sd, skr, bal, hno) with RTL support, database-managed translations, and offline-first PWA support (Serwist + IndexedDB write queue).
+
+How it addresses the Field Shift challenge (API-based integration)
+Agropioo includes a “Rotation Planner” decision-support module that compares at least three rotation strategies (including the farmer’s current rotation) for a selected field and season window:
+- API-based data integration (no manual bulk dataset downloads): server-side Next.js Route Handlers connect to NASA Earth observation services via APIs for location/time-based queries:
+  - NASA POWER API for agroclimatology (temperature, precipitation, humidity, solar/radiation, frost/growing-season indicators).
+  - SMAP (via NASA Earthdata services) for surface soil moisture and drought-stress signals.
+  - GPM IMERG (via NASA Earthdata/GES DISC services) for precipitation estimates, rainfall reliability/extremes, and field moisture inputs.
+  - NASA AppEEARS API for field-level MODIS/VIIRS vegetation indices (NDVI/vigor, stress, bare-ground periods) and ECOSTRESS land-surface temperature/evapotranspiration (heat stress, crop-water demand).
+- Data fusion & analysis: harmonize indicators to a common spatial/temporal view as needed and combine them with on-farm records/history, soil properties, crop characteristics, irrigation/water availability, and farmer priorities (conserve water, improve soil structure, supplemental income, erosion reduction, market suitability).
+- Explainable recommendations: for each strategy show why it was suggested, supporting evidence (indicator summaries/time trends), potential benefits (water efficiency, infiltration/erosion reduction, soil health, pest-cycle interruption, income options), uncertainties/data gaps, and risks requiring local farmer/agronomist review. Highlight vulnerable and bare-field periods.
+- Farmer-centered design: clear local-language explanations of terms (evapotranspiration, NDVI, soil-moisture anomaly), priority inputs, and explicit reminders that the tool supports—not replaces—farmer judgment and local expertise.
+
+Benefits and intended impact
+- Helps farmers explore climate-resilient, water-smart rotation options grounded in observable field conditions and farm history.
+- Makes satellite/environmental insights actionable and explainable in local context/languages, reducing avoidable losses and improving long-term soil and livelihood resilience.
+- Builds on a working, localized platform so guidance is tied to actual farm data and priorities, adaptable to other regions by swapping local crops, soils, practices, and data sources.
+
+Tools, languages, hardware, and software used
+- App: TypeScript, Next.js 16 (App Router, Route Handlers), React 19, Tailwind CSS v4, Leaflet/React-Leaflet.
+- Backend/data: Neon Lakebase Postgres (+ pgvector), Zod, bcryptjs/jose auth, nodemailer/SMTP, Cloudinary.
+- AI/ML: OpenAI Agents SDK (@openai/agents) with gpt-4o-mini, RAG embeddings via Ollama nomic-embed-text (768-dim), TensorFlow.js + HuggingFace for disease detection.
+- APIs/services (current): OpenWeather, 5 Pakistan government mandi/price sources (AMIS, SAMIS, FMIS KP, BMIS, PBS-SPI), Photon/geocoding; Serwist PWA/offline.
+- Field Shift module: NASA POWER API, SMAP/GPM IMERG access via NASA Earthdata services, and NASA AppEEARS API (MODIS/VIIRS, ECOSTRESS) integrated via server-side Route Handlers.
+
+Creativity and factors considered
+- Connects a working farmer-facing system (records + advisor + market/weather tools) with EO-driven, explainable rotation analysis tied to actual farm history and priorities.
+- Compares multiple strategies (including current practice), emphasizes uncertainty and human-in-the-loop review, and considers water constraints, erosion/terrain, heat/rainfall stress, bare-field windows, and market/practical feasibility alongside soil-health goals.
+
+==================================================
+USE OF SUPER INTELLIGENCE (SI)
+==================================================
+Select all that apply (adjust to match actual use before submitting):
+[x] Building SI/ML Into the Project
+[x] Coding, Debugging, or Troubleshooting
+[x] Research or Information Gathering
+[x] Ideation or Brainstorming
+[x] Writing, Editing, or Translation
+[x] Data Analysis and Interpretation
+[ ] Visual Design or Image Creation (select if any demo visuals are SI-generated; add visible watermark)
+[ ] Presentation, Video, or Audio (select if any demo media is SI-generated; add watermark/acknowledgment)
+[ ] Other Project-Related SI Use
+
+Suggested disclosure (for descriptive text/metadata in repo/demo as appropriate):
+"Agropioo uses SI/AI in-product (OpenAI Agents SDK with an LLM-based multi-agent advisor and ML-assisted crop disease detection). SI tools were used during development for ideation, research, coding/debugging assistance, and drafting/editing text. Any SI-generated images, video, or audio in the demo/presentation are labeled with visible watermarks or acknowledgments in descriptive text/metadata. NASA branding/design elements were not generated or modified using SI."
+
+(Adjust to exactly match actual SI use. Ensure any SI-generated images/video/audio in the submitted demo carry visible watermarks and acknowledgments per challenge rules.)
+
+==================================================
+NASA DATA (API integrations — add as Link Text + Link URL)
+==================================================
+Note: NASA data/resources must be used/integrated in the submitted project (required for Global Award eligibility). The entries below are the NASA resources Agropioo uses via API-based integrations for the Field Shift rotation module.
+
+Link Text: NASA POWER API (agroclimatology & meteorological data)
+Link URL:  https://power.larc.nasa.gov/docs/services/api/
+
+Link Text: NASA SMAP — Soil Moisture Active Passive (soil moisture / drought stress indicators)
+Link URL:  https://www.earthdata.nasa.gov/data/instruments/smap-l-band-radiometer
+
+Link Text: NASA GPM IMERG (precipitation estimates & rainfall trends)
+Link URL:  https://gpm.nasa.gov/data/imerg
+
+Link Text: NASA AppEEARS API (area-based access to MODIS/VIIRS vegetation indices & ECOSTRESS LST/ET)
+Link URL:  https://appeears.earthdatacloud.nasa.gov/api/
+
+Link Text: NASA Earthdata (programmatic data access for NASA Earth observations)
+Link URL:  https://www.earthdata.nasa.gov/
+
+==================================================
+NOTES BEFORE SUBMITTING
+==================================================
+- Project Demonstration link is required and must be public (no password/permissions): slide deck max 7 slides (incl. title/intro) OR video max 30 seconds.
+- All links must be full public URLs.
+- NASA Data must reflect resources actually used/integrated in the submitted project for Global Award eligibility — keep this list accurate to what is implemented.
+- SI: ensure any SI-generated images/video/audio in the demo carry visible watermarks and acknowledgments; do not use/modify NASA branding via SI.
+- Keep all statements accurate to what is built at submission time.
